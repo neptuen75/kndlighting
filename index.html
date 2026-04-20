@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(주)케이엔디 | LED 조명기구 전문 제조</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Montserrat:wght@300;400;600;700&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ivory: #F7F4EE; --ivory-2: #EEE9DF; --ivory-3: #E3DDD2;
+      --dark: #1C1A17; --dark-2: #2B2822; --dark-3: #3A352D;
+      --copper: #B87333; --copper-light: #D4965A; --copper-pale: #F0DEC8;
+      --text: #2B2822; --text-muted: #6B6459; --white: #FFFFFF;
+      --nav-h: 72px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans KR', sans-serif; background: var(--ivory); color: var(--text); overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h); background: rgba(247,244,238,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--ivory-3);
+      display: flex; align-items: center; justify-content: space-between; padding: 0 6%;
+    }
+    .logo-wrap { display: flex; flex-direction: column; }
+    .logo-en { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 4px; color: var(--dark); line-height: 1; }
+    .logo-en span { color: var(--copper); }
+    .logo-kr { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 2px; font-family: 'Montserrat', sans-serif; font-weight: 300; }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 13px; transition: color 0.2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--copper); transform: scaleX(0); transition: transform 0.25s; transform-origin: left; }
+    .nav-links a:hover { color: var(--copper); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-contact { padding: 10px 24px; border: 1px solid var(--copper); color: var(--copper); font-size: 12px; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .nav-contact:hover { background: var(--copper); color: var(--white); }
+
+    #hero { min-height: 100vh; padding: calc(var(--nav-h) + 80px) 6% 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; background: var(--ivory); position: relative; overflow: hidden; }
+    .hero-deco { position: absolute; right: -80px; top: 50%; transform: translateY(-50%); width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, var(--copper-pale) 0%, transparent 70%); opacity: 0.5; pointer-events: none; }
+    .hero-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; }
+    .hero-label-line { width: 32px; height: 1px; background: var(--copper); }
+    .hero-label span { font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--copper); }
+    h1 { font-family: 'Noto Serif KR', serif; font-size: clamp(36px, 4vw, 60px); font-weight: 600; line-height: 1.3; color: var(--dark); margin-bottom: 28px; }
+    h1 em { color: var(--copper); font-style: normal; }
+    .hero-desc { font-size: 15px; line-height: 2; color: var(--text-muted); max-width: 440px; margin-bottom: 48px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-fill { padding: 14px 36px; background: var(--dark); color: var(--ivory); font-size: 13px; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+    .btn-fill:hover { background: var(--copper); }
+    .btn-line { padding: 14px 36px; border: 1px solid var(--dark-3); color: var(--dark); font-size: 13px; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+    .btn-line:hover { border-color: var(--copper); color: var(--copper); }
+
+    .hero-panel { background: var(--dark); padding: 52px 48px; position: relative; z-index: 1; }
+    .panel-title { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--copper); margin-bottom: 40px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    .stat-item { border-left: 2px solid var(--copper); padding-left: 16px; }
+    .stat-num { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 700; color: var(--ivory); line-height: 1; }
+    .stat-num span { font-size: 18px; color: var(--copper); }
+    .stat-label { font-size: 12px; color: #8A7F74; margin-top: 6px; }
+    .panel-divider { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 32px; }
+    .panel-info { display: flex; flex-direction: column; gap: 12px; }
+    .info-row { display: flex; gap: 12px; align-items: flex-start; }
+    .info-key { font-size: 11px; color: var(--copper); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; min-width: 36px; margin-top: 1px; }
+    .info-val { font-size: 13px; color: #C8C0B8; line-height: 1.6; }
+
+    section { padding: 100px 6%; }
+    .sec-label { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    .sec-label-line { width: 24px; height: 1px; background: var(--copper); }
+    .sec-label span { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--copper); }
+    h2 { font-family: 'Noto Serif KR', serif; font-size: clamp(28px, 3.5vw, 44px); font-weight: 600; color: var(--dark); margin-bottom: 16px; line-height: 1.3; }
+    .sec-desc { font-size: 15px; line-height: 2; color: var(--text-muted); max-width: 580px; margin-bottom: 60px; }
+
+    #about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .history-list { display: flex; flex-direction: column; }
+    .history-item { display: grid; grid-template-columns: 80px 1fr; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--ivory-3); }
+    .history-item:first-child { border-top: 1px solid var(--ivory-3); }
+    .history-year { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--copper); padding-top: 2px; }
+    .history-events { display: flex; flex-direction: column; gap: 6px; }
+    .history-event { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .history-event strong { color: var(--text); font-weight: 500; }
+    .about-right { display: flex; flex-direction: column; gap: 28px; }
+    .vision-box { background: var(--dark); padding: 40px; }
+    .vision-box p { font-family: 'Noto Serif KR', serif; font-size: 16px; line-height: 2; color: var(--ivory); }
+    .vision-box p em { color: var(--copper-light); font-style: normal; }
+    .biz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--ivory-3); }
+    .biz-item { background: var(--ivory); padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .biz-item-title { font-size: 12px; font-weight: 500; color: var(--copper); font-family: 'Montserrat', sans-serif; letter-spacing: 1px; }
+    .biz-item p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .org-box { background: var(--ivory-2); padding: 32px; }
+    .org-title { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); font-family: 'Montserrat', sans-serif; margin-bottom: 20px; }
+    .org-tree { display: flex; flex-direction: column; align-items: center; }
+    .org-ceo { background: var(--dark); color: var(--copper); padding: 10px 28px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; }
+    .org-vline { width: 1px; height: 20px; background: var(--ivory-3); }
+    .org-branches { display: grid; grid-template-columns: 1fr 1fr 1fr; width: 100%; }
+    .org-branch { display: flex; flex-direction: column; align-items: center; }
+    .org-dept { background: var(--copper); color: var(--white); padding: 8px 6px; font-size: 11px; font-weight: 500; text-align: center; width: 100%; }
+    .org-subs { width: 100%; padding: 8px 8px 0; display: flex; flex-direction: column; gap: 4px; }
+    .org-sub { font-size: 11px; color: var(--text-muted); padding: 4px 0; border-bottom: 1px solid var(--ivory-3); text-align: center; }
+
+    #products { background: var(--ivory); }
+    .design-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--ivory-3); margin-bottom: 60px; }
+    .design-stat { background: var(--white); padding: 28px 24px; text-align: center; }
+    .design-stat-num { font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: var(--copper); }
+    .design-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ivory-3); }
+    .product-card { background: var(--white); padding: 40px 32px; transition: background 0.25s; position: relative; overflow: hidden; }
+    .product-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--copper); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+    .product-card:hover { background: var(--ivory); }
+    .product-card:hover::after { transform: scaleX(1); }
+    .product-icon { width: 44px; height: 44px; margin-bottom: 24px; }
+    .product-card h3 { font-family: 'Noto Serif KR', serif; font-size: 17px; font-weight: 600; color: var(--dark); margin-bottom: 12px; }
+    .product-card p { font-size: 13px; line-height: 1.8; color: var(--text-muted); }
+    .product-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; }
+    .ptag { padding: 4px 10px; background: var(--ivory-2); font-size: 11px; color: var(--text-muted); }
+
+    #certifications { background: var(--dark); }
+    #certifications h2 { color: var(--ivory); }
+    #certifications .sec-desc { color: #8A7F74; }
+    .cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .cert-card { background: var(--dark-2); padding: 36px 28px; display: flex; flex-direction: column; gap: 14px; transition: background 0.2s; }
+    .cert-card:hover { background: var(--dark-3); }
+    .cert-icon { width: 40px; height: 40px; background: rgba(184,115,51,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cert-card h3 { font-size: 15px; font-weight: 500; color: var(--ivory); line-height: 1.4; }
+    .cert-card p { font-size: 12px; color: #8A7F74; line-height: 1.7; }
+    .cert-footer { padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+    .cert-issuer { font-size: 11px; color: #6B6459; }
+    .cert-status { font-size: 10px; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; color: var(--copper); padding: 3px 8px; border: 1px solid var(--copper); }
+    .dl-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; padding: 9px 18px; border: 1px solid rgba(184,115,51,0.4); color: var(--copper); font-size: 11px; font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; background: transparent; transition: background 0.2s, color 0.2s; }
+    .dl-btn:hover { background: var(--copper); color: var(--dark); }
+
+    #support { background: var(--white); }
+    .support-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; }
+    .contact-items { display: flex; flex-direction: column; }
+    .contact-item { display: flex; gap: 20px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--ivory-3); }
+    .contact-item:first-child { border-top: 1px solid var(--ivory-3); }
+    .contact-icon { width: 40px; height: 40px; flex-shrink: 0; background: var(--ivory-2); display: flex; align-items: center; justify-content: center; }
+    .contact-item h3 { font-size: 14px; font-weight: 500; color: var(--dark); margin-bottom: 6px; }
+    .contact-item p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+    .contact-item a { color: var(--copper); text-decoration: none; font-size: 13px; font-weight: 500; }
+    .form-wrap { display: flex; flex-direction: column; gap: 16px; }
+    .form-title { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+    .form-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fg { display: flex; flex-direction: column; gap: 8px; }
+    .fg label { font-size: 11px; color: var(--text-muted); font-family: 'Montserrat', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
+    .fg input, .fg select, .fg textarea { border: 1px solid var(--ivory-3); background: var(--ivory); padding: 12px 16px; font-family: 'Noto Sans KR', sans-serif; font-size: 14px; color: var(--text); outline: none; resize: none; transition: border-color 0.2s; }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--copper); }
+    .fg select option { background: var(--ivory); }
+    .submit-btn { padding: 14px 40px; background: var(--dark); color: var(--ivory); border: none; cursor: pointer; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; align-self: flex-start; transition: background 0.2s; }
+    .submit-btn:hover { background: var(--copper); }
+
+    footer { background: var(--dark-2); padding: 60px 6% 32px; border-top: 2px solid var(--copper); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: 12px; color: #6B6459; line-height: 1.9; margin-top: 20px; }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--copper); margin-bottom: 18px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col a { font-size: 13px; color: #6B6459; text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--copper-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; display: flex; justify-content: space-between; font-size: 11px; color: #4A4540; }
+
+    .toast { position: fixed; bottom: 32px; right: 32px; background: var(--dark); color: var(--copper); padding: 14px 24px; border-left: 3px solid var(--copper); font-size: 13px; font-weight: 500; z-index: 999; opacity: 0; transform: translateY(8px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; } .hero-panel { display: none; }
+      .about-grid { grid-template-columns: 1fr; } .support-layout { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; } .cert-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .product-grid { grid-template-columns: 1fr; } .design-stats { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr; } .frow { grid-template-columns: 1fr; }
+      .nav-links { display: none; } .cert-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo-wrap">
+    <!-- ★ 로고 이미지: logo.png 파일을 index.html과 같은 폴더에 넣으세요 -->
+    <img src="logo.png" alt="K&D LIGHTING (주)케이엔디" style="height:48px; width:auto; display:block;" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">회사 소개</a></li>
+    <li><a href="#products">주요 생산품목</a></li>
+    <li><a href="#certifications">인허가증</a></li>
+    <li><a href="#support">고객지원</a></li>
+  </ul>
+  <a href="#support" class="nav-contact">문의하기</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-deco"></div>
+  <div>
+    <div class="hero-label"><div class="hero-label-line"></div><span>LED 조명기구 전문 제조기업</span></div>
+    <h1>삶의 질을 높이는<br><em>빛을 만듭니다</em></h1>
+    <p class="hero-desc">주식회사 K&D는 개인의 편안함과 삶의 질을 높여주기 위한 연구개발과 노하우를 바탕으로 조명등기구 디자인 및 생산을 전문으로 하는 기업입니다. 주거공간부터 건축·오피스 조명까지, 새로운 빛의 패러다임을 제시합니다.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-fill">제품 보기</a>
+      <a href="#support" class="btn-line">상담 문의</a>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="panel-title">Company at a Glance</div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">24<span>년</span></div><div class="stat-label">업력 (2001년 설립)</div></div>
+      <div class="stat-item"><div class="stat-num">584<span>건</span></div><div class="stat-label">디자인 등록 실적</div></div>
+      <div class="stat-item"><div class="stat-num">9<span>종+</span></div><div class="stat-label">보유 인증·등록</div></div>
+      <div class="stat-item"><div class="stat-num">인천<span>본사</span></div><div class="stat-label">서구 파랑로 소재</div></div>
+    </div>
+    <div class="panel-divider"></div>
+    <div class="panel-info">
+      <div class="info-row"><div class="info-key">TEL</div><div class="info-val">032)665-2291~2</div></div>
+      <div class="info-row"><div class="info-key">FAX</div><div class="info-val">032)665-2293</div></div>
+      <div class="info-row"><div class="info-key">ADDR</div><div class="info-val">인천시 서구 파랑로 466번길 38</div></div>
+      <div class="info-row"><div class="info-key">CERT</div><div class="info-val">KS · KC · ISO9001 · ISO45001 · 고효율 · 벤처기업</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-label"><div class="sec-label-line"></div><span>Company Overview</span></div>
+  <h2>회사 소개</h2>
+  <div class="about-grid">
+    <div>
+      <p class="sec-desc">2001년 광덕전기 설립 이래 꾸준한 성장을 거듭하며, 2008년 (주)케이엔디로 법인 전환한 이후 한국 조명 시장을 선도하고 있습니다.</p>
+      <div class="history-list">
+        <div class="history-item"><div class="history-year">2001</div><div class="history-events"><div class="history-event"><strong>11월</strong> 광덕전기 설립</div></div></div>
+        <div class="history-item"><div class="history-year">2002</div><div class="history-events"><div class="history-event"><strong>05월</strong> 조명 등기구 디자인 개발 시작</div></div></div>
+        <div class="history-item"><div class="history-year">2007</div><div class="history-events"><div class="history-event"><strong>02월</strong> 사옥 신축 이전 (부평구)</div></div></div>
+        <div class="history-item"><div class="history-year">2008</div><div class="history-events"><div class="history-event"><strong>12월</strong> (주)K&D 법인전환 및 상호변경</div></div></div>
+        <div class="history-item"><div class="history-year">2010</div><div class="history-events"><div class="history-event"><strong>07월</strong> 벤처기업 인증</div><div class="history-event"><strong>11월</strong> ISO 9001:2008 / KS Q9001:2009 취득</div></div></div>
+        <div class="history-item"><div class="history-year">2011</div><div class="history-events"><div class="history-event"><strong>02월</strong> 중소기업청장 표창 수상 (기술발전)</div><div class="history-event"><strong>03월</strong> KS 제품인증서 / 전기용품 안전인증서 취득</div></div></div>
+        <div class="history-item"><div class="history-year">2012</div><div class="history-events"><div class="history-event"><strong>03월</strong> 기업부설 연구소 인증</div></div></div>
+        <div class="history-item"><div class="history-year">2018</div><div class="history-events"><div class="history-event"><strong>02월</strong> 사옥 신축 이전 (부평구)</div></div></div>
+        <div class="history-item"><div class="history-year">2023</div><div class="history-events"><div class="history-event"><strong>11월</strong> 사옥 신축 이전 (서구 현 본사)</div></div></div>
+        <div class="history-item"><div class="history-year">2024</div><div class="history-events"><div class="history-event"><strong>06월</strong> 여성기업 인증 취득</div><div class="history-event"><strong>08월</strong> 벤처기업(혁신성장형) 취득</div></div></div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="vision-box">
+        <p>소비자의 요구를 파악하고 새로운 흐름을 제시하는 <em>조명등기구 전문생산·납품 기업</em>.<br>단순히 공간을 비춰주는 것을 넘어 삶의 질을 향상시키고, 새로운 방식과 패러다임을 제시합니다.</p>
+      </div>
+      <div class="biz-grid">
+        <div class="biz-item"><div class="biz-item-title">주거조명</div><p>거실·침실·주방·식탁 등 주거공간 전용 조명기구 설계·생산</p></div>
+        <div class="biz-item"><div class="biz-item-title">건축조명</div><p>아파트·오피스텔 등 건설사 프로젝트 납품 전문</p></div>
+        <div class="biz-item"><div class="biz-item-title">오피스조명</div><p>업무공간 최적화 LED 조명, 다운라이트·평판등 공급</p></div>
+        <div class="biz-item"><div class="biz-item-title">디자인개발</div><p>자체 R&D, 디자인 등록 584건 보유한 디자인 선도 기업</p></div>
+      </div>
+      <div class="org-box">
+        <div class="org-title">Organization Chart</div>
+        <div class="org-tree">
+          <div class="org-ceo">CEO</div>
+          <div class="org-vline"></div>
+          <div style="width:66%; height:1px; background:var(--ivory-3);"></div>
+          <div class="org-branches">
+            <div class="org-branch">
+              <div class="org-vline"></div>
+              <div class="org-dept">DESIGN<br><span style="font-size:10px;opacity:0.8;">연구개발팀</span></div>
+              <div class="org-subs"><div class="org-sub">실내조명 제품개발</div></div>
+            </div>
+            <div class="org-branch">
+              <div class="org-vline"></div>
+              <div class="org-dept">MANAGEMENT<br><span style="font-size:10px;opacity:0.8;">관리팀</span></div>
+              <div class="org-subs"><div class="org-sub">구매 / 총무</div><div class="org-sub">품질관리 / 영업</div></div>
+            </div>
+            <div class="org-branch">
+              <div class="org-vline"></div>
+              <div class="org-dept">PRODUCTION<br><span style="font-size:10px;opacity:0.8;">생산팀</span></div>
+              <div class="org-subs"><div class="org-sub">생산관리 / 납품</div><div class="org-sub">조립·생산 / 아크릴</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="sec-label"><div class="sec-label-line"></div><span>Product Lineup</span></div>
+  <h2>주요 생산품목</h2>
+  <p class="sec-desc">변화하는 디자인 트렌드에 부응하기 위해 끊임없이 조명 디자인을 연구·개발하며, 총 584건의 디자인·실용신안 등록을 보유한 제품 경쟁력을 자랑합니다.</p>
+  <div class="design-stats">
+    <div class="design-stat"><div class="design-stat-num">584</div><div class="design-stat-label">총 디자인 등록 건수</div></div>
+    <div class="design-stat"><div class="design-stat-num">199</div><div class="design-stat-label">식탁등 등록</div></div>
+    <div class="design-stat"><div class="design-stat-num">178</div><div class="design-stat-label">거실등 등록</div></div>
+    <div class="design-stat"><div class="design-stat-num">94</div><div class="design-stat-label">침실등 등록</div></div>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="18" r="10" stroke="#B87333" stroke-width="1.5"/><circle cx="22" cy="18" r="5" fill="#B87333" opacity="0.3"/><path d="M22 8V5M30 10l2-2M32 18h3M30 26l2 2M22 28v3M14 26l-2 2M10 18H7M14 10l-2-2" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><rect x="14" y="34" width="16" height="4" rx="1" fill="#B87333" opacity="0.4"/></svg>
+      </div>
+      <h3>거실등</h3>
+      <p>주거공간의 메인 조명. 세련된 디자인과 고효율 LED를 결합한 최다 등록 품목으로, 다양한 인테리어 스타일에 최적화된 제품군을 보유합니다.</p>
+      <div class="product-tags"><span class="ptag">디자인 178건 등록</span><span class="ptag">주거용</span><span class="ptag">KS인증</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><ellipse cx="22" cy="20" rx="10" ry="6" stroke="#B87333" stroke-width="1.5"/><ellipse cx="22" cy="20" rx="5" ry="3" fill="#B87333" opacity="0.3"/><path d="M12 20H6M32 20h6" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><rect x="16" y="30" width="12" height="3" rx="1" fill="#B87333" opacity="0.4"/></svg>
+      </div>
+      <h3>식탁등</h3>
+      <p>식공간의 분위기를 결정하는 펜던트·식탁 조명. 199건의 디자인 등록으로 가장 폭넓은 라인업을 보유한 핵심 품목입니다.</p>
+      <div class="product-tags"><span class="ptag">디자인 199건 등록</span><span class="ptag">펜던트형</span><span class="ptag">주거용</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><rect x="8" y="16" width="28" height="14" rx="2" stroke="#B87333" stroke-width="1.5"/><rect x="12" y="20" width="20" height="6" rx="1" fill="#B87333" opacity="0.25"/><circle cx="22" cy="23" r="3" fill="#B87333" opacity="0.5"/><path d="M16 16v-4M28 16v-4" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><rect x="14" y="30" width="16" height="3" rx="1" fill="#B87333" opacity="0.3"/></svg>
+      </div>
+      <h3>침실등</h3>
+      <p>수면 환경에 최적화된 부드럽고 안정적인 조명. 94건의 디자인 등록으로 다양한 침실 인테리어 스타일을 커버합니다.</p>
+      <div class="product-tags"><span class="ptag">디자인 94건 등록</span><span class="ptag">저휘도 설계</span><span class="ptag">주거용</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><rect x="6" y="12" width="32" height="8" rx="1" stroke="#B87333" stroke-width="1.5"/><rect x="8" y="20" width="28" height="10" rx="1" fill="#B87333" opacity="0.15"/><line x1="14" y1="12" x2="14" y2="8" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><line x1="22" y1="12" x2="22" y2="8" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><line x1="30" y1="12" x2="30" y2="8" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>주방등</h3>
+      <p>조리 작업에 최적화된 밝고 균일한 조명. 41건의 디자인 등록과 높은 연색성(Ra80 이상)으로 실제 식재료 색상을 그대로 표현합니다.</p>
+      <div class="product-tags"><span class="ptag">디자인 41건 등록</span><span class="ptag">고연색성 Ra80+</span><span class="ptag">주거용</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><circle cx="22" cy="18" r="8" stroke="#B87333" stroke-width="1.5"/><circle cx="22" cy="18" r="4" fill="#B87333" opacity="0.3"/><rect x="14" y="26" width="16" height="4" rx="8" fill="#B87333" opacity="0.4"/><line x1="22" y1="30" x2="22" y2="36" stroke="#B87333" stroke-width="1.2"/></svg>
+      </div>
+      <h3>다운라이트</h3>
+      <p>천장 매입형 다운라이트로 사무공간·상업공간의 깔끔한 마감에 최적화. 다양한 빔각과 색온도 선택으로 공간 목적에 맞는 연출이 가능합니다.</p>
+      <div class="product-tags"><span class="ptag">디자인 25건 등록</span><span class="ptag">매입형</span><span class="ptag">상업·오피스용</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">
+        <svg viewBox="0 0 44 44" fill="none"><rect x="10" y="14" width="24" height="16" rx="2" stroke="#B87333" stroke-width="1.5"/><rect x="14" y="18" width="16" height="8" rx="1" fill="#B87333" opacity="0.25"/><path d="M17 14v-3M27 14v-3" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/><rect x="16" y="30" width="12" height="3" rx="1" fill="#B87333" opacity="0.3"/><circle cx="22" cy="22" r="2" fill="#B87333" opacity="0.6"/></svg>
+      </div>
+      <h3>직부등 / 센서등</h3>
+      <p>천장 직착형 조명 및 인체감지 센서를 내장한 자동 절전 조명. 직부등 25건, 센서등 20건의 디자인 등록을 보유합니다.</p>
+      <div class="product-tags"><span class="ptag">직부형 25건</span><span class="ptag">센서형 20건</span><span class="ptag">고효율인증</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications">
+  <div class="sec-label"><div class="sec-label-line"></div><span>Licenses &amp; Certifications</span></div>
+  <h2>인허가증</h2>
+  <p class="sec-desc">KS, KC, 고효율에너지기자재 등 다수의 품질인증을 취득하여 높은 품질을 유지하는 (주)케이엔디. 아래에서 인증서를 다운로드하실 수 있습니다.</p>
+  <!--
+    ★★★ 인허가증 파일 첨부 방법 ★★★
+    1. index.html과 같은 폴더에 "files" 폴더를 만드세요.
+    2. 각 인증서 PDF/이미지 파일을 files 폴더 안에 넣으세요.
+    3. 각 카드의 href="files/파일명.pdf" 부분을 실제 파일명으로 수정하세요.
+    4. download 속성 덕분에 클릭 시 자동 다운로드됩니다.
+  -->
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="2" stroke="#B87333" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#B87333" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>KS 제품인증서</h3>
+      <p>형광등기구 KS 제품인증 취득. 한국산업표준 기준을 충족하는 품질·성능·안전을 보증합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">한국표준협회</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/KS인증서.pdf" download="KS인증서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="#B87333" stroke-width="1.5"/><path d="M6 10l3 3 5-5" stroke="#B87333" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>KC 전기용품 안전인증서</h3>
+      <p>매입형 LED등기구 전기용품 안전인증 취득. 전기안전관리법 기준 적합 제품임을 확인합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">한국기계전기전자시험연구원</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/KC안전인증서.pdf" download="KC안전인증서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="10,2 12.5,7.5 18,8.2 14,12.1 15,17.5 10,14.8 5,17.5 6,12.1 2,8.2 7.5,7.5" stroke="#B87333" stroke-width="1.5" fill="none"/></svg></div>
+      <h3>고효율에너지기자재 인증</h3>
+      <p>한국에너지공단 고효율에너지기자재 인증 다수 취득. 최고 수준의 에너지 효율을 공식 보증합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">한국에너지공단</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/고효율에너지기자재인증.pdf" download="고효율에너지기자재인증.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M6 4V2a1 1 0 011-1h6a1 1 0 011 1v2" stroke="#B87333" stroke-width="1.5"/><line x1="6" y1="9" x2="14" y2="9" stroke="#B87333" stroke-width="1"/><line x1="6" y1="12" x2="11" y2="12" stroke="#B87333" stroke-width="1"/></svg></div>
+      <h3>ISO 9001 / KS Q9001</h3>
+      <p>국제 품질경영시스템 표준 ISO 9001 및 KS Q9001 인증 취득 (2010년). 전 생산 공정의 품질 관리 체계를 구축하였습니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">인증기관</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/ISO9001인증서.pdf" download="ISO9001인증서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v5c0 4.5 3 8 7 9 4-1 7-4.5 7-9V6L10 2z" stroke="#B87333" stroke-width="1.5" fill="none"/><path d="M7 10l2.5 2.5L13 7" stroke="#B87333" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>ISO 45001 안전보건경영시스템</h3>
+      <p>산업안전보건 국제 표준 ISO 45001 인증 취득. 임직원의 안전과 건강을 최우선으로 하는 사업장 운영을 증명합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">인증기관</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/ISO45001인증서.pdf" download="ISO45001인증서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#B87333" stroke-width="1.5"/><path d="M7 8c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.5-1 2.5-2.5 3L10 13" stroke="#B87333" stroke-width="1.3" stroke-linecap="round"/><circle cx="10" cy="15.5" r="0.8" fill="#B87333"/></svg></div>
+      <h3>벤처기업 인증 (혁신성장형)</h3>
+      <p>2010년 최초 인증, 2024년 벤처기업(혁신성장형)으로 재취득. 기술력과 성장 가능성을 공인받은 혁신 기업입니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">중소벤처기업부</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/벤처기업인증서.pdf" download="벤처기업인증서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 5.5H18l-4.9 3.6 1.8 5.5L10 13l-4.9 3.6 1.8-5.5L2 7.5h6.2z" stroke="#B87333" stroke-width="1.3" fill="none"/></svg></div>
+      <h3>여성기업 확인서</h3>
+      <p>2024년 여성기업 확인서 취득. 공공 조달 우대 자격을 보유하며 다양성과 포용의 가치를 실천하는 기업입니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">여성기업종합지원센터</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/여성기업확인서.pdf" download="여성기업확인서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M6 8h8M6 11h5" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <h3>직접생산 확인증명서</h3>
+      <p>다수의 직접생산 확인증명서 보유. 자사 공장에서 직접 생산함을 증명하며 조달청 납품 자격을 완비합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">중소기업유통센터</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/직접생산확인증명서.pdf" download="직접생산확인증명서.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M5 7h10M5 10h7M5 13h4" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <h3>전기공사업 등록증 / 공장등록증</h3>
+      <p>전기공사업 면허 및 제조업 공장등록증 보유. 조명 설치·시공 포함 일괄 납품 솔루션 제공 자격을 갖추고 있습니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">산업통상자원부 / 지자체</span><span class="cert-status">유효</span></div>
+      <a class="dl-btn" href="files/전기공사업등록증.pdf" download="전기공사업등록증.pdf"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</a>
+    </div>
+  </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><polygon points="10,2 12.5,7.5 18,8.2 14,12.1 15,17.5 10,14.8 5,17.5 6,12.1 2,8.2 7.5,7.5" stroke="#B87333" stroke-width="1.5" fill="none"/></svg></div>
+      <h3>고효율에너지기자재 인증</h3>
+      <p>한국에너지공단 고효율에너지기자재 인증 다수 취득. 최고 수준의 에너지 효율을 공식 보증합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">한국에너지공단</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('고효율 인증서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="13" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M6 4V2a1 1 0 011-1h6a1 1 0 011 1v2" stroke="#B87333" stroke-width="1.5"/><line x1="6" y1="9" x2="14" y2="9" stroke="#B87333" stroke-width="1"/><line x1="6" y1="12" x2="11" y2="12" stroke="#B87333" stroke-width="1"/></svg></div>
+      <h3>ISO 9001 / KS Q9001</h3>
+      <p>국제 품질경영시스템 표준 ISO 9001 및 KS Q9001 인증 취득 (2010년). 전 생산 공정의 품질 관리 체계를 구축하였습니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">인증기관</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('ISO 9001 인증서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L3 6v5c0 4.5 3 8 7 9 4-1 7-4.5 7-9V6L10 2z" stroke="#B87333" stroke-width="1.5" fill="none"/><path d="M7 10l2.5 2.5L13 7" stroke="#B87333" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>ISO 45001 안전보건경영시스템</h3>
+      <p>산업안전보건 국제 표준 ISO 45001 인증 취득. 임직원의 안전과 건강을 최우선으로 하는 사업장 운영을 증명합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">인증기관</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('ISO 45001 인증서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#B87333" stroke-width="1.5"/><path d="M7 8c0-1.7 1.3-3 3-3s3 1.3 3 3c0 1.5-1 2.5-2.5 3L10 13" stroke="#B87333" stroke-width="1.3" stroke-linecap="round"/><circle cx="10" cy="15.5" r="0.8" fill="#B87333"/></svg></div>
+      <h3>벤처기업 인증 (혁신성장형)</h3>
+      <p>2010년 최초 인증, 2024년 벤처기업(혁신성장형)으로 재취득. 기술력과 성장 가능성을 공인받은 혁신 기업입니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">중소벤처기업부</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('벤처기업 확인서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.8 5.5H18l-4.9 3.6 1.8 5.5L10 13l-4.9 3.6 1.8-5.5L2 7.5h6.2z" stroke="#B87333" stroke-width="1.3" fill="none"/></svg></div>
+      <h3>여성기업 확인서</h3>
+      <p>2024년 여성기업 확인서 취득. 공공 조달 우대 자격을 보유하며 다양성과 포용의 가치를 실천하는 기업입니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">여성기업종합지원센터</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('여성기업 확인서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M6 8h8M6 11h5" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <h3>직접생산 확인증명서</h3>
+      <p>다수의 직접생산 확인증명서 보유. 자사 공장에서 직접 생산함을 증명하며 조달청 납품 자격을 완비합니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">중소기업유통센터</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('직접생산 확인증명서 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="3" width="16" height="14" rx="1" stroke="#B87333" stroke-width="1.5"/><path d="M5 7h10M5 10h7M5 13h4" stroke="#B87333" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+      <h3>전기공사업 등록증 / 공장등록증</h3>
+      <p>전기공사업 면허 및 제조업 공장등록증 보유. 조명 설치·시공 포함 일괄 납품 솔루션 제공 자격을 갖추고 있습니다.</p>
+      <div class="cert-footer"><span class="cert-issuer">산업통상자원부 / 지자체</span><span class="cert-status">유효</span></div>
+      <button class="dl-btn" onclick="showToast('등록증 다운로드 중...')"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v7M3 5l3 3 3-3M1 10h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>다운로드</button>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="sec-label"><div class="sec-label-line"></div><span>Customer Support</span></div>
+  <h2>고객지원</h2>
+  <div class="support-layout">
+    <div>
+      <p style="font-size:15px;line-height:2;color:var(--text-muted);margin-bottom:40px;">제품 견적·납품 상담부터 기술 문의까지, (주)케이엔디의 전문 담당자가 빠르게 안내해 드립니다.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 4a1 1 0 011-1h12a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" stroke="#B87333" stroke-width="1.3"/><path d="M2 4l7 5 7-5" stroke="#B87333" stroke-width="1.3"/></svg></div>
+          <div><h3>이메일</h3><p>제품 카탈로그, 견적, 기술 문의</p><a href="mailto:knd@knd.co.kr">knd@knd.co.kr</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 3a1 1 0 011-1h2.3a1 1 0 01.95.68l.9 2.7a1 1 0 01-.23.99l-1.4 1.4a9.5 9.5 0 004.3 4.3l1.4-1.4a1 1 0 01.99-.23l2.7.9a1 1 0 01.68.95V15a1 1 0 01-1 1C7.17 16 2 10.83 2 4V3z" stroke="#B87333" stroke-width="1.3"/></svg></div>
+          <div><h3>전화 상담</h3><p>평일 09:00 ~ 18:00 (점심 12:00~13:00)</p><a href="tel:032-665-2291">032)665-2291~2</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2C6.24 2 4 4.24 4 7c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" stroke="#B87333" stroke-width="1.3"/><circle cx="9" cy="7" r="2" stroke="#B87333" stroke-width="1.3"/></svg></div>
+          <div><h3>본사 방문 / 팩스</h3><p>인천시 서구 파랑로 466번길 38<br>FAX: 032)665-2293</p></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="3" width="14" height="10" rx="1" stroke="#B87333" stroke-width="1.3"/><path d="M2 6h14M6 3v3M12 3v3" stroke="#B87333" stroke-width="1"/></svg></div>
+          <div><h3>카탈로그 / 자료 신청</h3><p>제품 카탈로그 및 인허가 서류 PDF</p><a href="#">자료 신청하기 →</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="form-wrap">
+      <div class="form-title">온라인 문의</div>
+      <div class="form-sub">문의 내용을 남겨주시면 1영업일 이내 답변드립니다.</div>
+      <div class="frow">
+        <div class="fg"><label>회사명</label><input type="text" placeholder="(주)회사명" /></div>
+        <div class="fg"><label>담당자명</label><input type="text" placeholder="홍길동" /></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>연락처</label><input type="tel" placeholder="010-0000-0000" /></div>
+        <div class="fg"><label>이메일</label><input type="email" placeholder="email@company.com" /></div>
+      </div>
+      <div class="fg">
+        <label>문의 유형</label>
+        <select>
+          <option value="">선택해 주세요</option>
+          <option>제품 견적 문의</option>
+          <option>건설사 납품 상담</option>
+          <option>인허가 서류 요청</option>
+          <option>기술 지원 요청</option>
+          <option>디자인 등록 제품 확인</option>
+          <option>직접생산 확인증 요청</option>
+          <option>기타</option>
+        </select>
+      </div>
+      <div class="fg"><label>문의 내용</label><textarea rows="5" placeholder="납품 현장, 수량, 제품 사양 등 구체적인 내용을 기재해 주시면 빠르게 안내드립니다."></textarea></div>
+      <button class="submit-btn" onclick="showToast('문의가 접수되었습니다. 감사합니다!')">문의 제출하기</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo-en" style="color:var(--ivory);">K<span style="color:var(--copper);">&</span>D</div>
+      <div class="logo-kr" style="color:#6B6459;">(주)케이엔디 · LED LIGHTING</div>
+      <p>인천시 서구 파랑로 466번길 38<br>Tel: 032)665-2291~2 &nbsp;|&nbsp; Fax: 032)665-2293<br>설립: 2001년 &nbsp;|&nbsp; 법인전환: 2008년 (주)케이엔디</p>
+    </div>
+    <div class="footer-col">
+      <h4>바로가기</h4>
+      <ul>
+        <li><a href="#about">회사 소개</a></li>
+        <li><a href="#products">주요 생산품목</a></li>
+        <li><a href="#certifications">인허가증</a></li>
+        <li><a href="#support">고객지원</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>제품군</h4>
+      <ul>
+        <li><a href="#">거실등</a></li>
+        <li><a href="#">식탁등</a></li>
+        <li><a href="#">침실등</a></li>
+        <li><a href="#">주방등</a></li>
+        <li><a href="#">다운라이트</a></li>
+        <li><a href="#">직부등 / 센서등</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>인증 현황</h4>
+      <ul>
+        <li><a href="#">KS 제품인증</a></li>
+        <li><a href="#">KC 안전인증</a></li>
+        <li><a href="#">고효율에너지기자재</a></li>
+        <li><a href="#">ISO 9001 / 45001</a></li>
+        <li><a href="#">벤처기업 인증</a></li>
+        <li><a href="#">여성기업 확인</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 (주)케이엔디 K&D Co., Ltd. All rights reserved.</span>
+    <span>GitHub Pages로 운영</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+document.querySelectorAll('.dl-btn').forEach(b => b.addEventListener('click', e => e.preventDefault()));
+</script>
+</body>
+</html>
